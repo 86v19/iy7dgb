@@ -7,31 +7,12 @@
 window.rs = null;
 
 $(document).ready(function () {
+	$("#prey").removeAttr("disabled");
+	$("#prey").attr("placeholder", "Hello");
+
 	// Get all the DOM objects.
-	var $form = $("#playground-form");
-	var $btnRun = $("#run");
-	var $btnShare = $("#share");
-	var $btnAbout = $("#about");
-	var $codeEditor = $("#code");
-	var $historyPanel = $("#dialogue");
-	var $history = $("#history");
-	var $message = $("#message");
-	var $optDebug = $("#opt-debug");
-	var $optUTF8 = $("#opt-utf8");
-	var $debugPanel = $("#debug-pane");
-	var $debugOut = $("#debug");
-	var $rsVersion = $("#rs-version");
-	var $shareURL = $("#share-url");
+	var $message = $("#prey");
 
-	// Fix disabled states in case of the user reloading the page.
-	$codeEditor.prop("disabled", false);
-	$message.prop("disabled", true);
-	$optUTF8.prop("disabled", false);
-
-	// The share URL selects itself on click.
-	$shareURL.focus(function () {
-		$shareURL.select();
-	});
 
 	// Currently testing the bot?
 	var isRunning = false;
@@ -39,10 +20,6 @@ $(document).ready(function () {
 	// Populate the RiveScript JS version.
 	$rsVersion.text(new RiveScript().version());
 
-	// The about button opens the /about page.
-	$btnAbout.on("click", function () {
-		window.open("/about");
-	});
 
 	// The run button runs the bot.
 	$btnRun.on("click", function () {
