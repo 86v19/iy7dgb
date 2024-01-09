@@ -20,7 +20,7 @@ function loadTemplate(template) {
 
 $(document).ready(function() {
 	// Show the version number being used.
-	$("#rivescript-version").text("RiveScript-JS version " + new RiveScript().version());
+	$("#rive").text("RiveScript-JS version " + new RiveScript().version());
 
 	// Hook up the template selector.
 	$("#template").change(function() {
