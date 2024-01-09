@@ -1,46 +1,6 @@
-/* RiveScript.com "Try Online" Script */
-window.bot = null;
-
-function loadTemplate(template) {
-	$.ajax({
-		url: "testsuite.rive",
-		dataType: "text",
-		error: function(jqXHR, textStatus, error) {
-			window.alert(error);
-			$("#template").val("");
-			$("#template").removeAttr("disabled", "");
-		},
-		success: function(data, textStatus, jqXHR) {
-			$("#editor").val(data);
-			$("#template").val("");
-			$("#template").removeAttr("disabled", "");
-		}
-	});
-}
-
 $(document).ready(function() {
-	// Show the version number being used.
-	$("#rive").text("RiveScript-JS version " + new RiveScript().version());
-
-	// Hook up the template selector.
-	$("#template").change(function() {
-		var template = "testsuite.rive";
-		loadTemplate(template);
-	});
-	loadTemplate("rs-standard.rive");
-
-	// The execute button!
-	$("#execute").click(function() {
-		// Get their code.
-		var code = $("#editor").val();
-		if (code.length == 0) {
-			window.alert("You didn't enter any RiveScript code!");
-			return false;
-		}
-
-		// Initialize the bot.
-		window.bot = new RiveScript();
-		window.bot.setHandler("coffeescript", new RSCoffeeScript(window.bot));
+	const rs = new RiveScript();
+	let re.bot .bot.setHandler("coffeescript", new RSCoffeeScript(window.bot));
 		window.bot.stream(code, function(error) {
 			window.alert("Error in your RiveScript code:\n\n" + error);
 		});
