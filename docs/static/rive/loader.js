@@ -29,5 +29,5 @@ function loading_done() {
 
 // It's good to catch errors too!
 function loading_error(error, filename, lineno) {
-  console.log("Error when loading files: " + error);
+  alert("Error when loading files: " + error);
 }
