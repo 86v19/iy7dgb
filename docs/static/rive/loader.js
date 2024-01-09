@@ -1,4 +1,5 @@
-const element = document.createElementById("rive");
+const element = document.getElementById("rive");
+
 var bot = new RiveScript();
 
 // Load an individual file.
@@ -9,8 +10,8 @@ bot.loadFile("testsuite.rive").then(loading_done).catch(loading_error);
 // with multiple file names), the success function is called only when ALL
 // the files have finished loading.
 function loading_done() {
-	
-  element.id = "Bot has finished loading";
+	element.setAttribute("placeholder","");
+  element.setAttribute("placeholder","Jepeto");
 
   // Now the replies must be sorted!
   bot.sortReplies();
@@ -18,13 +19,13 @@ function loading_done() {
   // And now we're free to get a reply from the brain!
   // Execute a function when the user presses a key on the keyboard
   input.addEventListener("keypress", function(event) {
-  // If the user presses the "Esc" key on the keyboard
-  if (event.key === "Esc") {
+  // If the user presses the "End" key on the keyboard
+  if (event.key === "End") {
     	event.preventDefault();
   	let username = "local-user";
 
 	  	bot.reply(username, com).then(function(reply) {
-			element.id = reply;
+      element.setAttribute("placeholder",reply);
 	  	});
 	}
   }
