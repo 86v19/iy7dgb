@@ -1,5 +1,4 @@
-const element = document.getElementById("rive");
-
+var element = document.getElementById("rive");
 var bot = new RiveScript();
 
 // Load an individual file.
@@ -10,8 +9,8 @@ bot.loadFile("testsuite.rive").then(loading_done).catch(loading_error);
 // with multiple file names), the success function is called only when ALL
 // the files have finished loading.
 function loading_done() {
-	element.setAttribute("placeholder","");
-  element.setAttribute("placeholder","Jepeto");
+  element.setAttribute("placeholder","");
+  element.value = "iy7dgb ";
 
   // Now the replies must be sorted!
   bot.sortReplies();
@@ -23,9 +22,9 @@ function loading_done() {
   if (event.key === "End") {
     	event.preventDefault();
   	let username = "local-user";
-
-	  	bot.reply(username, com).then(function(reply) {
-      element.setAttribute("placeholder",reply);
+	  	bot.reply(username, element.value).then(function(reply) {
+		element.value = "";
+      		element.value = text;
 	  	});
 	}
   }
