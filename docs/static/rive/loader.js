@@ -16,16 +16,20 @@ function loading_done() {
   bot.sortReplies();
 
   // And now we're free to get a reply from the brain!
+  // Execute a function when the user presses a key on the keyboard
+  input.addEventListener("keypress", function(event) {
+  // If the user presses the "Esc" key on the keyboard
+  if (event.key === "Esc") {
+    	event.preventDefault();
+  	let username = "local-user";
 
-  // RiveScript remembers user data by their username and can tell
-  // multiple users apart.
-  let username = "local-user";
-
-  // NOTE: the API has changed in v2.0.0 and returns a Promise now.
-  bot.reply(username, com).then(function(reply) {
-    element.id = reply;
-  });
-}
+	  	bot.reply(username, com).then(function(reply) {
+			element.id = reply;
+	  	});
+	}
+  }
+}); 
+  
 
 // It's good to catch errors too!
 function loading_error(error, filename, lineno) {
