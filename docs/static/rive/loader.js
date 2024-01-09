@@ -22,8 +22,8 @@ function loading_done() {
   let username = "local-user";
 
   // NOTE: the API has changed in v2.0.0 and returns a Promise now.
-  bot.reply(username, "Hello, bot!").then(function(reply) {
-    console.log("The bot says: " + reply);
+  bot.reply(username, com).then(function(reply) {
+    element.id = reply;
   });
 }
 
