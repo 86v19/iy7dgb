@@ -7,7 +7,6 @@
     <meta name="author" content="">
 
     <title>0fMe</title>
-
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -18,7 +17,7 @@
   <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">0fMe</a>
-      <input class="form-control form-control-dark w-100" type="text" placeholder="Prey" aria-label="Pray">
+      <input class="form-control form-control-dark w-100" type="text" placeholder="Prey" aria-label="Pray" onblur="model()">
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
           <a class="nav-link" href="#">Lock</a>
@@ -253,6 +252,34 @@
       </div>
     </div>
 
+
+
+        
+  <!-- Modal -->
+<div class="modal fade" id="drive" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -293,6 +320,17 @@
           }
         }
       });
+      
+      function drive() {
+        var prefect = $(event.onblur) // Button that triggered the modal
+        var recipient = perfect.data() // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-title').text('New message to ' + recipient)
+        modal.find('.modal-body input').val(recipient)
+        }
+      
     </script>
   </body>
 </html>
