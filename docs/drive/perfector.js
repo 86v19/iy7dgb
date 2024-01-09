@@ -7,109 +7,35 @@
 window.rs = null;
 
 $(document).ready(function () {
-	$("#prey").removeAttr("disabled");
-	$("#prey").attr("placeholder", "Hello");
+	$("#perfector").removeAttr("disabled");
+	$("#perfector").attr("placeholder", "Hello World");
+}
 
-	// Get all the DOM objects.
-	var $message = $("#prey");
-
-
-	// Currently testing the bot?
-	var isRunning = false;
-
-	// Populate the RiveScript JS version.
-	$rsVersion.text(new RiveScript().version());
-
-
-	// The run button runs the bot.
-	$btnRun.on("click", function () {
-		var ok = false;
+$(document).keyup(function(event) {
+    if ($("#perfector").is(":focus") && event.key == "Enter") {
+	var ok = false;
 		if (isRunning) {
 			ok = teardownBot();
 		}
 		else {
 			ok = initBot();
+			try {
+				sendMessage();
+			} catch (e) {
+				window.alert(e);
+			}
 		}
 
 		if (ok) {
 			isRunning = !isRunning;
 		}
-	});
-
-	// The share button.
-	$btnShare.on("click", function () {
-		// Get their source code.
-		var code = $codeEditor.val();
-		if (code.length === 0) {
-			window.alert("You didn't enter any RiveScript code to share!");
-			return false;
-		}
-		else if (code.length > 64000) {
-			window.alert("Your source code must not exceed 64KB.");
-			return false;
-		}
-
-		// Validate the code compiles.
-		var hasErrors = false;
-		var bot = new RiveScript({
-			utf8: $optUTF8.prop("checked")
-		});
-		bot.stream(code, function (error) {
-			window.alert("Please correct the following error in your RiveScript code:\n\n" + error);
-			hasErrors = true;
-		});
-
-		if (hasErrors) {
-			return false;
-		}
-
-		$.post({
-			url: "/share",
-			contentType: "application/json; encoding=UTF-8",
-			data: JSON.stringify({
-				"source": code,
-			}),
-			dataType: "json",
-			success: function (data) {
-				if (data.uuid !== undefined) {
-					window.location = "/s/" + data.uuid;
-				}
-			},
-			error: function (error) {
-				window.alert(error.responseJSON.error);
-			}
-		});
-	})
-
-	// Form submitting and clicking the Send button.
-	$form.submit(function () {
-		try {
-			sendMessage();
-		} catch (e) {
-			window.alert(e);
-		}
-		return false;
-	})
-
-	// Toggling debug mode.
-	$optDebug.on("change", function () {
-		if ($optDebug.prop("checked")) {
-			$debugPanel.show();
-		}
-		else {
-			$debugPanel.hide();
-		}
-
-		// Toggle debugging if the bot is already running.
-		if (window.rs !== null) {
-			window.rs._debug = true;
-		}
-	});
+    }
+});
 
 	// Code to initialize the bot when the Run button is clicked.
 	function initBot() {
 		// Get their source code.
-		var code = $codeEditor.val();
+		var code = $message.val();
 		if (code.length === 0) {
 			window.alert("You didn't enter any RiveScript code to run!");
 			return false;
