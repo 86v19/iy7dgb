@@ -3,7 +3,7 @@ window.bot = null;
 
 function loadTemplate(template) {
 	$.ajax({
-		url: "static/rive/testsuite.rive",
+		url: "testsuite.rive",
 		dataType: "text",
 		error: function(jqXHR, textStatus, error) {
 			window.alert(error);
@@ -24,7 +24,7 @@ $(document).ready(function() {
 
 	// Hook up the template selector.
 	$("#template").change(function() {
-		var template = $("#template").val();
+		var template = "testsuite.rive";
 		loadTemplate(template);
 	});
 	loadTemplate("rs-standard.rive");
