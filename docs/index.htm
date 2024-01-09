@@ -320,17 +320,97 @@
           }
         }
       });
-      
-      function drive() {
-        var prefect = $(event.onblur) // Button that triggered the modal
-        var recipient = perfect.data() // Extract info from data-* attributes
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        var modal = $(this)
-        modal.find('.modal-title').text('New message to ' + recipient)
-        modal.find('.modal-body input').val(recipient)
-        }
-      
+
     </script>
+      
+<script type="text/javascript">
+// Handle the debug mode query string parameter.
+var debugMode = false;
+if (window.location.search.indexOf("debug=1") > -1) {
+	$("#toggle").val("Disable Debug Mode");
+	debugMode = true;
+} else {
+	$("#toggle").val("Enable Debug Mode");
+}
+
+// Warn the user if they opened the page locally that it will probably
+// experience ajax errors.
+if (window.location.protocol === "file:") {
+	document.querySelector("#local-file-error").style.display = "block";
+}
+
+// Problem loading rivescript.js?
+var rs;
+if (window.RiveScript === undefined) {
+	document.querySelector("#webpack-error").style.display = "block";
+} else {
+	// Create our RiveScript interpreter.
+	rs = new RiveScript({
+		debug:   debugMode,
+		onDebug: onDebug
+	});
+
+
+	// You can register objects that can then be called
+	// using <call></call> syntax
+	rs.setSubroutine('fancyJSObject', function(rs, args){
+		// doing complex stuff here
+	});
+}
+
+function onReady() {
+	$("#dialogue").append("<div><span class='bot'>Bot:</span> Welcome, this is RiveScript.js v" + rs.version() + ", ready to chat!");
+	$("#message").removeAttr("disabled");
+	$("#message").attr("placeholder", "Send message");
+	$("#message").focus();
+
+	// Now to sort the replies!
+	rs.sortReplies();
+}
+
+function onError(err, filename, lineno) {
+	$("#dialogue").append('<div><span class="bot">Error:</span> ' + err + '</div>');
+}
+
+// Handle sending a message to the bot.
+function sendMessage () {
+	var text = $("#message").val();
+	$("#message").val("");
+	$("#dialogue").append("<div><span class='user'>You:</span> " + text + "</div>");
+
+	rs.reply("soandso", text, this).then(function(reply) {
+		reply = reply.replace(/\n/g, "<br>");
+		$("#dialogue").append("<div><span class='bot'>Bot:</span> " + reply + "</div>");
+		$("#dialogue").animate({ scrollTop: $("#dialogue").height() }, 1000);
+	}).catch(function(e) {
+		window.alert(e.message + "\n" + e.line);
+		console.log(e);
+	});
+
+	return false;
+}
+
+// Button that turns debugging on and off.
+function toggleDebug () {
+	if (debugMode) {
+		window.location = "?debug=0";
+	} else {
+		window.location = "?debug=1";
+	}
+}
+
+function onDebug(message) {
+	if (debugMode) {
+		$("#debug").append("<div>[RS] " + escapeHtml(message) + "</div>");
+	}
+}
+
+function escapeHtml(text) {
+	return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+</script>
+      
+
   </body>
 </html>
