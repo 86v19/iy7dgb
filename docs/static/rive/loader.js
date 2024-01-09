@@ -6,7 +6,7 @@ bot.loadFile("testsuite.rive").then(loading_done).catch(loading_error);
 
 // All file loading operations are asynchronous, so you need handlers
 // to catch when they've finished. If you use loadDirectory (or loadFile
-// with multiple file names), the success function is called only when ALL
+// with multeeiple file names), the success function is called only when ALL
 // the files have finished loading.
 function loading_done() {
   element.setAttribute("placeholder","");
