@@ -1,5 +1,5 @@
 /* RiveScript Playground
- *
+ * Perfector
  * This code is released under the GNU General Public License version 2.
  */
 
