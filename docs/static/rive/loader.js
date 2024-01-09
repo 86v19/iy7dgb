@@ -1,59 +1,33 @@
-$(document).ready(function() {
-	const rs = new RiveScript();
-	let re.bot .bot.setHandler("coffeescript", new RSCoffeeScript(window.bot));
-		window.bot.stream(code, function(error) {
-			window.alert("Error in your RiveScript code:\n\n" + error);
-		});
-		window.bot.sortReplies();
+const element = document.createElementById("rive");
+var bot = new RiveScript();
 
-		// Reset the dialogue.
-		$("#dialogue").empty();
+// Load an individual file.
+bot.loadFile("testsuite.rive").then(loading_done).catch(loading_error);
 
-		$("#chatModal").modal();
-	});
+// All file loading operations are asynchronous, so you need handlers
+// to catch when they've finished. If you use loadDirectory (or loadFile
+// with multiple file names), the success function is called only when ALL
+// the files have finished loading.
+function loading_done() {
+	
+  element.id = "Bot has finished loading";
 
-	// Modal events
-	$("#chatModal").on("shown.bs.modal", function() {
-		$("#message").focus();
-	});
-	$("#chatModal").on("hidden.bs.modal", function() {
-		// Unload the RiveScript bot to clean up memory.
-		window.bot = null;
-	});
+  // Now the replies must be sorted!
+  bot.sortReplies();
 
-	// The Enter key.
-	$("#message").keydown(function(e) {
-		if (e.keyCode == 13) {
-			var $dialogue = $("#dialogue");
-			var $message = $("#message");
+  // And now we're free to get a reply from the brain!
 
-			if (window.bot === null) {
-				return; // No bot? Weird.
-			}
+  // RiveScript remembers user data by their username and can tell
+  // multiple users apart.
+  let username = "local-user";
 
-			var message = $message.val();
-			if (message.length == 0) {
-				return;
-			}
+  // NOTE: the API has changed in v2.0.0 and returns a Promise now.
+  bot.reply(username, "Hello, bot!").then(function(reply) {
+    console.log("The bot says: " + reply);
+  });
+}
 
-			// Echo the user immediately and clear their input.
-			var $user = $("<div></div>");
-			$user.html('<span class="try-user">User:</span> ' + message);
-			$dialogue.append($user);
-			$message.val("");
-
-			// Fetch the reply.
-			window.bot.reply("local-user", message).then(function(reply) {
-				reply = reply.replace(new RegExp("\n", "g"), "<br>");
-
-				// Update the dialogue.
-				var $bot = $("<div></div>");
-				$bot.html('<span class="try-bot">Bot:</span> ' + reply);
-				$dialogue.append($bot);
-
-				// Scroll to bottom.
-				$dialogue.animate({ scrollTop: $dialogue[0].scrollHeight }, 1000);
-			});
-		}
-	})
-});
+// It's good to catch errors too!
+function loading_error(error, filename, lineno) {
+  console.log("Error when loading files: " + error);
+}
