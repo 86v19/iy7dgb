@@ -431,18 +431,18 @@
     </script>
 
 <script>
-  var RiveScript = require("rivescript.min.js");
+  var RiveScript = require("static/rive/rivescript.js");
 
   // Create the bot.
   var bot = new RiveScript({ debug: false });
   bot.loadFile([
-        "brain/begin.rive",
-        "brain/admin.rive",
-        "brain/clients.rive",
-        "brain/eliza.rive",
-        "brain/myself.rive",
-        "brain/rpg.rive",
-        "brain/javascript.rive"
+        "static/rive/brain/begin.rive",
+        "static/rive/brain/admin.rive",
+        "static/rive/brain/clients.rive",
+        "static/rive/brain/eliza.rive",
+        "static/rive/brain/myself.rive",
+        "static/rive/brain/rpg.rive",
+        "static/rive/brain/javascript.rive"
       ]).then(active).catch(botless);
 
 function active() {
