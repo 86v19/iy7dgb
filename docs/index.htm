@@ -480,7 +480,7 @@
   
   function onReady() {
     $("#message").removeAttr("disabled");
-    $("#message").attr("placeholder", "I prey perfect...");
+    $("#message").attr("placeholder", "I Prey perfect...");
     $("#message").focus();
   
     // Now to sort the replies!
@@ -495,8 +495,9 @@
   function sendMessage () {
     var text = $("#message").val();
     $("#message").val("");
+    $("#message").attr("placeholder", "");
   
-    rs.reply("soandso", text, this).then(function(reply) {
+    rs.reply("Light", text, this).then(function(reply) {
       reply = reply.replace(/\n/g, "<br>");
       $("#message").attr("placeholder", reply);
     }).catch(function(e) {
