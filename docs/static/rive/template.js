@@ -25,6 +25,7 @@ function loading_done() {
   	let username = "local-user";
 	  	bot.reply(username, command).then(function(reply) {
 		element.value = "";
+		element.setAttribute("placeholder", "");
       		element.setAttribute("placeholder", text);
 	  	});
 	}
