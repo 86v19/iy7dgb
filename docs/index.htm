@@ -430,36 +430,6 @@
     </script>
 
 <script type="text/javascript">
-  // Handle the debug mode query string parameter.
-  var debugMode = false;
-  if (window.location.search.indexOf("debug=1") > -1) {
-    $("#toggle").val("Disable Debug Mode");
-    debugMode = true;
-  } else {
-    $("#toggle").val("Enable Debug Mode");
-  }
-  
-  // Warn the user if they opened the page locally that it will probably
-  // experience ajax errors.
-  if (window.location.protocol === "file:") {
-    document.querySelector("#local-file-error").style.display = "block";
-  }
-  
-  // Problem loading rivescript.js?
-  var rs;
-  if (window.RiveScript === undefined) {
-    document.querySelector("#webpack-error").style.display = "block";
-  } else {
-    // Create our RiveScript interpreter.
-    rs = new RiveScript({
-      debug:   debugMode,
-      onDebug: onDebug
-    });
-  
-    // This won't work on the web!
-    //rs.loadDirectory("brain");
-  
-    // Load our files from the brain/ folder.
     rs.loadFile([
       "static/rive/brain/begin.rive",
       "static/rive/brain/admin.rive",
@@ -479,7 +449,7 @@
   
   function onReady() {
     $("#message").removeAttr("disabled");
-    $("#message").attr("placeholder", "I Prey perfect...");
+    $("#message").attr("placeholder", "Command");
     $("#message").focus();
   
     // Now to sort the replies!
