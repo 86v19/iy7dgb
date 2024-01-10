@@ -3,7 +3,7 @@ var command = element.value;
 var bot = new RiveScript();
 
 // Load an individual file.
-bot.loadFile("testsuite.rive").then(loading_done).catch(loading_error);
+bot.loadFile("https://86v19.github.io/iy7dgb/static/rive/testsuite.rive").then(loading_done).catch(loading_error);
 
 // All file loading operations are asynchronous, so you need handlers
 // to catch when they've finished. If you use loadDirectory (or loadFile
