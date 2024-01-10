@@ -1,4 +1,5 @@
-var element = document.getElementById("rive").value;
+var element = document.getElementById("rive");
+var command = element.value;
 var bot = new RiveScript();
 
 // Load an individual file.
@@ -17,14 +18,14 @@ function loading_done() {
 
   // And now we're free to get a reply from the brain!
   // Execute a function when the user presses a key on the keyboard
-  input.addEventListener("keypress", function(event) {
+  element.addEventListener("keypress", function(event) {
   // If the user presses the "End" key on the keyboard
   if (event.key === "End") {
     	event.preventDefault();
   	let username = "local-user";
-	  	bot.reply(username, element.value).then(function(reply) {
+	  	bot.reply(username, command).then(function(reply) {
 		element.value = "";
-      		element.value = text;
+      		element.setAttribute("placeholder", text);
 	  	});
 	}
   }
