@@ -461,13 +461,13 @@
   
     // Load our files from the brain/ folder.
     rs.loadFile([
-      "/boss/static/rive/brain/begin.rive",
-      "/boss/static/rive/brain/admin.rive",
-      "/boss/static/rive/brain/clients.rive",
-      "/boss/static/rive/brain/eliza.rive",
-      "/boss/static/rive/brain/myself.rive",
-      "/boss/static/rive/brain/rpg.rive",
-      "/boss/static/rive/brain/javascript.rive"
+      "static/rive/brain/begin.rive",
+      "static/rive/brain/admin.rive",
+      "static/rive/brain/clients.rive",
+      "static/rive/brain/eliza.rive",
+      "static/rive/brain/myself.rive",
+      "static/rive/brain/rpg.rive",
+      "static/rive/brain/javascript.rive"
     ]).then(onReady).catch(onError);
   
     // You can register objects that can then be called
@@ -491,7 +491,7 @@
   }
   
   // Handle sending a message to the bot.
-  function sendMessage () {
+  function sendMessage() {
     var text = $("#message").val();
     $("#message").val("");
     $("#message").attr("placeholder", "");
