@@ -479,9 +479,8 @@
   }
   
   function onReady() {
-    $("#dialogue").append("<div><span class='bot'>Bot:</span> Welcome, this is RiveScript.js v" + rs.version() + ", ready to chat!");
     $("#message").removeAttr("disabled");
-    $("#message").attr("placeholder", "Send message");
+    $("#message").attr("placeholder", "Perfector");
     $("#message").focus();
   
     // Now to sort the replies!
@@ -489,19 +488,17 @@
   }
   
   function onError(err, filename, lineno) {
-    $("#dialogue").append('<div><span class="bot">Error:</span> ' + err + '</div>');
+    $("#message").append('<div><span class="bot">Error:</span> ' + err + '</div>');
   }
   
   // Handle sending a message to the bot.
   function sendMessage () {
     var text = $("#message").val();
     $("#message").val("");
-    $("#dialogue").append("<div><span class='user'>You:</span> " + text + "</div>");
   
     rs.reply("soandso", text, this).then(function(reply) {
       reply = reply.replace(/\n/g, "<br>");
-      $("#dialogue").append("<div><span class='bot'>Bot:</span> " + reply + "</div>");
-      $("#dialogue").animate({ scrollTop: $("#dialogue").height() }, 1000);
+      $("#message").attr("placeholder", reply);
     }).catch(function(e) {
       window.alert(e.message + "\n" + e.line);
       console.log(e);
