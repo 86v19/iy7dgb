@@ -467,7 +467,7 @@
     $("#message").val("");
     $("#message").attr("placeholder", "");
   
-    rs.reply("Light", text, this).then(function(reply) {
+    rs.reply("Me", text, this).then(function(reply) {
       reply = reply.replace(/\n/g, "<br>");
       $("#message").attr("placeholder", reply);
     }).catch(function(e) {
