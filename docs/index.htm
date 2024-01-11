@@ -444,27 +444,22 @@
         "static/rive/brain/myself.rive",
         "static/rive/brain/rpg.rive",
         "static/rive/brain/javascript.rive"
-      ]).then(active).catch(botless);
+      ]).then(active()).catch(botless());
 
 function active() {
   $("#message").attr("placeholder", "");
-	$("#messages").attr("placeholder", "Command");
-	bot.sortReplies();
-
-	var text = $("#message").val();
-  
-    $("#message").val("");
-    $("#message").attr("placeholder", "");
-  
+	$("#message").attr("placeholder", "Command");
+		bot.sortReplies();
+};
+function command() {
+    var text = $("#message").val;
     bot.reply("Me", text, this).then(function(reply) {
-      reply = reply.replace(/\n/g, "<br>");
-      
+      reply = reply.replace(/\n/g, " ");
       $("#message").attr("placeholder", reply);
-      
+      $("#message").val = "";
     }).catch(function(e) {
       $("#message").attr("placeholder", e.message + " " + e.line);
     });
-  
     return false;
   }
 
