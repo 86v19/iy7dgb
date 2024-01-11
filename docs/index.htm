@@ -15,7 +15,7 @@
   <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Boss</a>
-      <form onSubmit="return sendMessage()">
+      <form onSubmit="return perfectis()">
       <input type="text" name="message" id="message" autocomplete="off" disabled placeholder="Please wait... loading...">
       <input type="submit" value="Send">
       </form>
@@ -444,14 +444,15 @@
         "static/rive/brain/myself.rive",
         "static/rive/brain/rpg.rive",
         "static/rive/brain/javascript.rive"
-      ]).then(active()).catch(botless());
+      ]).then(active).catch(botless);
 
 function active() {
+  document.getElementById('message').disabled = false;
   $("#message").attr("placeholder", "");
 	$("#message").attr("placeholder", "Command");
 		bot.sortReplies();
 };
-function command() {
+function perfectis() {
     var text = $("#message").val;
     bot.reply("Me", text, this).then(function(reply) {
       reply = reply.replace(/\n/g, " ");
