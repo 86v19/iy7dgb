@@ -453,8 +453,8 @@ function active() {
 };
 function perfectis() {
     var text = $("#message").val;
+    document.getElementById('message').value = ""
     bot.reply("Me", text, this).then(function(reply) {
-      $("#message").empty;
       reply = reply.replace(/\n/g, " ");
       $("#message").attr("placeholder", reply);
     }).catch(function(e) {
