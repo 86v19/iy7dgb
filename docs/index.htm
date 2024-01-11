@@ -454,9 +454,9 @@ function active() {
 function perfectis() {
     var text = $("#message").val;
     bot.reply("Me", text, this).then(function(reply) {
+      $("#message").empty;
       reply = reply.replace(/\n/g, " ");
       $("#message").attr("placeholder", reply);
-      $("#message").val = "";
     }).catch(function(e) {
       $("#message").attr("placeholder", e.message + " " + e.line);
     });
