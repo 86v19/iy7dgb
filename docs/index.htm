@@ -127,7 +127,26 @@
 
 <div class="containers">
   <div class="components">
-    
+    <html>
+  <head>
+    <title>Directly Accessing Street View Data</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script type="module" src="./index.js"></script>
+  </head>
+  <body>
+    <div id="map" style="width: 45%; height: 100%; float: left"></div>
+    <div id="pano" style="width: 45%; height: 100%; float: left"></div>
+
+    <!-- 
+      The `defer` attribute causes the callback to execute after the full HTML
+      document has been parsed. For non-blocking uses, avoiding race conditions,
+      and consistent behavior across browsers, consider loading using Promises.
+      See https://developers.google.com/maps/documentation/javascript/load-maps-js-api
+      for more information.
+      -->
+
     <div class="switch">
       <div class="switch__1">
         <input id="switch-1" type="checkbox">
@@ -389,6 +408,12 @@
   
     <script type="text/javascript" src="https://unpkg.com/rivescript@2.2.1/dist/rivescript.min.js"></script>
 
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    >
+
     <script src="static/scripts/spout.js"></script>
     
     <!-- Icons -->
@@ -469,6 +494,13 @@ function botless(err) {
 }
   
   </script>
+	  <script>
+
+		  
+
+
+		  
+	  </script>
 
   </body>
 </html>
