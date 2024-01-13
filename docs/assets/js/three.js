@@ -17620,8 +17620,8 @@ init();
 animate();
 
 function init() {
-  container = document.createElement("div");
-  document.body.appendChild(container);
+ // container = document.createElement("div");
+ // document.body.appendChild(container);
 
   camera = new THREE.PerspectiveCamera(
     120,
