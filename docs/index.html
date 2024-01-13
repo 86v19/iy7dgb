@@ -102,7 +102,7 @@
           <div class="col-lg-5">
             <form onSubmit="return perfect()" class="sign-up-form d-flex" data-aos="fade-up" data-aos-delay="300">
               <input name="message" id="message" type="text" class="form-control" placeholder="Perfecting...">
-              <input type="submit" class="btn btn-primary" value="Enter">
+              <input type="submit" class="btn btn-primary" value="Submit">
             </form>
           </div>
         </div>
@@ -1215,9 +1215,9 @@
           "rive/brain/myself.rive",
           "rive/brain/rpg.rive",
           "rive/brain/javascript.rive"
-        ]).then(active).catch(botless);
+        ]).then(perfector).catch(noperfect);
   
-  function active() {
+  function perfector() {
     document.getElementById('message').disabled = false;
     $("#message").attr("placeholder", "");
     $("#message").attr("placeholder", "i");
@@ -1235,7 +1235,7 @@
       return false;
     }
   
-  function botless(err) {
+  function noperfect(err) {
      $("#message").attr("placeholder", err);
   }
     
